@@ -10,7 +10,7 @@ export default async function prompt_boost(req, res) {
                 { role: "system", content: "Voce é um auxiliar de escrita de atendimento, onde vai melhorar a frase que receber acrescentado mais palavras, caso não receba nenhuma frase retorne que Preciso receber uma frase" },
                 { role: "user", content: `${content}` }
             ],
-            model: "gpt-3.5-turbo",
+            model: "gpt-4-turbo-preview",
         });
         res.status(200).json({ message: completion.choices[0].message.content });
     } else {

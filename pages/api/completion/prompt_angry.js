@@ -10,7 +10,7 @@ export default async function prompt_angry(req, res) {
                 { role: "system", content: "Voce é um auxiliar de escrita de atendimento, onde vai receber uma frase e deverá completar de uma forma agressiva, caso não receba nada retorne que Preciso receber uma frase" },
                 { role: "user", content: `${content}` }
             ],
-            model: "gpt-3.5-turbo",
+            model: "gpt-4-turbo-preview",
         });
         res.status(200).json({ message: completion.choices[0].message.content });
     } else {
