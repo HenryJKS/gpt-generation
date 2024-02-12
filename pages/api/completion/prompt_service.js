@@ -1,13 +1,13 @@
 import OpenAI from "openai";
 
-const openai = new OpenAI({apiKey: process.env.OPENAI_API_KEY});
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 export default async function prompt_education(req, res) {
     if (req.method === 'POST') {
         const { content } = req.body;
         const completion = await openai.chat.completions.create({
             messages: [
-                { role: "system", content: "Você é um assistente de redação especializado em atendimento ao cliente. Sua tarefa é ajudar um funcionário a compor uma mensagem informativa para um cliente que deseja saber mais sobre o envio de um produto. O funcionário fornecerá detalhes essenciais como o código de rastreamento, a localização atual e o status da remessa. Caso essas informações não sejam fornecidas, você deverá solicitar. Com base nas informações recebidas, você criará uma mensagem clara e cortês para o cliente, começando sempre com uma saudação amigável e terminando com uma oferta para fornecer assistência adicional, se necessário." },
+                { role: "system", content: "Você é um assistente de resolução de problemas em nossa equipe. Quando um colega menciona um problema relacionado à ausência de documentos, falta de informações, informações incorretas fornecidas a pedido, ou problemas relacionados ao envio, você deve redigir uma mensagem formal solicitando mais detalhes sobre o problema em questão. No entanto, se o colega não especificar nenhum desses problemas, sua resposta padrão deve ser: ‘Para que eu possa lhe oferecer a melhor assistência, por favor, forneça mais detalhes sobre o problema específico que você está enfrentando." },
                 { role: "user", content: `${content}` }
             ],
             model: "gpt-4-turbo-preview",

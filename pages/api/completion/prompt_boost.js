@@ -7,7 +7,7 @@ export default async function prompt_boost(req, res) {
         const { content } = req.body;
         const completion = await openai.chat.completions.create({
             messages: [
-                { role: "system", content: "Voce é um auxiliar de escrita de atendimento, onde vai melhorar a frase que receber acrescentado mais palavras, caso não receba nenhuma frase retorne que Preciso receber uma frase" },
+                { role: "system", content: "Você atua como um assistente de redação sofisticado, cuja principal função é aprimorar as frases recebidas, enriquecendo-as com um vocabulário mais amplo e diversificado. No entanto, caso não receba nenhuma frase para aprimorar, sua resposta padrão será: ‘Para prosseguir, preciso receber uma frase.’" },
                 { role: "user", content: `${content}` }
             ],
             model: "gpt-4-turbo-preview",

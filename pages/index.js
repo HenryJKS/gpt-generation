@@ -105,6 +105,30 @@ function MyComponent() {
     });
   };
 
+  const handleClickGentle = async () => {
+    setIsWriting(true);
+    const response = await fetch("/api/completion/prompt_gentle", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ content: textAreaValue }),
+    });
+    const data = await response.json();
+    console.log(data.message);
+
+    setTextAreaValue("");
+
+    const messageChars = data.message.split("");
+
+    messageChars.forEach((char, index) => {
+      setTimeout(() => {
+        setTextAreaValue((prevValue) => prevValue + char);
+        if (index === messageChars.length - 1) {
+          setIsWriting(false);
+        }
+      }, index * 20);
+    });
+  }
+
   return (
     <div
       className="vh-100 d-flex justify-content-center align-items-center flex-column"
@@ -158,6 +182,7 @@ function MyComponent() {
         handleClickAngry={handleClickAngry}
         handleClickBoost={handleClickBoost}
         handleClickThanks={handleClickThanks}
+        handleClickGentle={handleClickGentle}
       />
     </div>
   );
